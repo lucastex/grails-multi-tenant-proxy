@@ -1,0 +1,17 @@
+<plugin name='multi-tenant-proxy' version='1.0' grailsVersion='1.3.6 &gt; *'>
+  <author>Lucas Teixeira</author>
+  <authorEmail>lucastex@gmail.com</authorEmail>
+  <title>Multi-Tenant Proxy Tenant Resolver</title>
+  <description>Multi-tenant add-on to use domain tenant resolver with http proxy in front of your app server</description>
+  <documentation>http://github.com/blanq/grails-multi-tenant-proxy</documentation>
+  <resources>
+    <resource>BuildConfig</resource>
+    <resource>Config</resource>
+    <resource>DataSource</resource>
+    <resource>UrlMappings</resource>
+  </resources>
+  <dependencies>
+    <plugin name='multiTenantCore' version='1.0.0 &gt; *' />
+  </dependencies>
+  <behavior />
+</plugin>
