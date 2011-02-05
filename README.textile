@@ -1,12 +1,13 @@
 h2. Grails Multi-Tenant Proxy plugin
 
 Grails Multi-Tenant is a great plugin and essential to my current projects.
+
 The default domain tenant resolver approach on tenant recognition relies on the domain name from the current request. 
 
 But the current implementation, get the domain name using
 
 <pre>
-	request.getServerName()
+request.getServerName()
 </pre>
 
 This works great when you're accessing the tomcat directly, or if your apache in front of your tomcats relies on mod_ajp to connect apache and tomcats. The point is that load balancers in a general way, as other software/hardware solutions (juniper, alteon and most market solutions) delegates the requests to tomcat as a proxy server, this means that all the requests gets in the java container from the "load balancer host". 
@@ -20,6 +21,10 @@ This is what the plugin does, attach another *tenantResolver* to multi-tenant pl
 h3. Plugin life
 
 This plugin won't probably have more features. Actually, it is intended to die if the multi-tenant-core plugin implements this as we won't need another plugin in our app. 
+
+The issue in the multi-tenant-core reporting this is the "GRAILSPLUGINS-2774":http://jira.codehaus.org/browse/GRAILSPLUGINS-2774
+
+It is already implemented on my plugin fork. The commit is "this one":https://github.com/lucastex/grails-multi-tenant-core/commit/c14c309e3ca15f6c88ab7e77f83df1053d945c04 and "I already sent one pull request":https://github.com/multi-tenant/grails-multi-tenant-core/pull/5 regarding this to the multi-tenant team. I just implemented this as a plugin, cause my projects really need this working asap. 
 
 So, it will live till then, don't blame me :)
 
