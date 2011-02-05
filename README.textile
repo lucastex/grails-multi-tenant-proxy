@@ -18,6 +18,16 @@ The key here is to make a tenantResolver that before checking the *request.getSe
 
 This is what the plugin does, attach another *tenantResolver* to multi-tenant plugin that makes this.
 
+h3. Installing
+
+As the normal grails installation process
+
+<pre>
+grails install-plugin multi-tenant-proxy
+</pre>
+
+Of course this plugins depends on multi-tenant-core (1.0.0 > *).
+
 h3. Plugin life
 
 This plugin won't probably have more features. Actually, it is intended to die if the multi-tenant-core plugin implements this as we won't need another plugin in our app. 
