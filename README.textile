@@ -1,0 +1,34 @@
+h2. Grails Multi-Tenant Proxy plugin
+
+Grails Multi-Tenant is a great plugin and essential to my current projects.
+The default domain tenant resolver approach on tenant recognition relies on the domain name from the current request. 
+
+But the current implementation, get the domain name using
+
+<pre>
+	request.getServerName()
+</pre>
+
+This works great when you're accessing the tomcat directly, or if your apache in front of your tomcats relies on mod_ajp to connect apache and tomcats. The point is that load balancers in a general way, as other software/hardware solutions (juniper, alteon and most market solutions) delegates the requests to tomcat as a proxy server, this means that all the requests gets in the java container from the "load balancer host". 
+
+The solution to this, is a wide-know and de facto solution, known as "XFF Project" (http://meta.wikimedia.org/wiki/XFF_project). It says that the load balancer when it makes the real request to the application server, insert some headers in this request with some properties from the first and original request. Properties as the 'server name', the 'client ip' and other stuff.
+
+The key here is to make a tenantResolver that before checking the *request.getServerName()*, check the *x-forwarded-host* property. If the header is there with a valid address, so use this host to define the current tenant. If the header is not available, just continue to use the serverName returned by the current request.
+
+This is what the plugin does, attach another *tenantResolver* to multi-tenant plugin that makes this.
+
+h3. Plugin life
+
+This plugin won't probably have more features. Actually, it is intended to die if the multi-tenant-core plugin implements this as we won't need another plugin in our app. 
+
+So, it will live till then, don't blame me :)
+
+h3. Limitations
+
+This works just as a database domain tenant resolver, witch I think most users do. If you define your tenants in your Config.groovy file, this won't work. This is tested only with "multiTenant" configuration.
+
+h3. Contact
+
+Lucas Teixeira
+lucas at gmail.com 
+:twitter @lucastex
